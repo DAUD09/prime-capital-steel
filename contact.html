@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Prime Capital Steel Fabricators</title>
+  <meta name="description" content="Get in touch with Prime Capital Steel Fabricators in Lilongwe, Malawi. Call, email or visit us." />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* ── Main contact layout: cards left, map right ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── Individual contact detail card ── */
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: var(--white);
+      border: 1px solid #ebebeb;
+      border-radius: 4px;
+      padding: 24px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    }
+
+    /* Red icon circle */
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+
+    .contact-card-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .contact-card-body h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .contact-card-body p,
+    .contact-card-body a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.5;
+      transition: color 0.2s ease;
+    }
+
+    .contact-card-body a:hover { color: var(--red); }
+
+    .contact-card-body .sub {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── Map placeholder ── */
+    .map-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #ebebeb;
+      position: sticky;
+      top: 100px;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--grey);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.35);
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .map-placeholder svg {
+      width: 40px;
+      height: 40px;
+      opacity: 0.3;
+    }
+
+    /* When you want to embed a real Google Map:
+       Replace the .map-placeholder div with:
+       <iframe
+         src="https://www.google.com/maps/embed?pb=YOUR_EMBED_URL"
+         width="100%" height="400" style="border:0;" allowfullscreen
+         loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+       </iframe>
+    */
+
+    .map-footer {
+      padding: 16px 20px;
+      background: var(--light);
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .map-footer svg {
+      width: 16px;
+      height: 16px;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ── Social links row ── */
+    .social-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 4px;
+      border: 2px solid #e0e0e0;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark);
+      transition: all 0.25s ease;
+    }
+
+    .social-pill:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .social-pill svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── Hours table ── */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+    }
+
+    .hours-table caption {
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+    }
+
+    .hours-table td {
+      padding: 10px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .hours-table tr:last-child td { border-bottom: none; }
+
+    .badge-open {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-left: 8px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .map-wrap { position: static; }
+      .social-row { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+       ============================================= -->
+  <header class="navbar">
+    <div class="topbar">
+      <div class="container">
+        <div class="topbar-left">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lilongwe, Malawi
+        </div>
+        <div class="topbar-right">
+          <span>Quality Steel Fabrication Built to Last</span>
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/265999123456" target="_blank" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <nav class="nav-main">
+      <div class="container">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-placeholder">PC</div>
+          <div>
+            <strong style="display:block;font-size:1rem;color:var(--dark);line-height:1.1;">PRIME CAPITAL</strong>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.08em;">STEEL FABRICATORS</span>
+          </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="work.html">Our Work</a></li>
+          <li><a href="work.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="quote.html" class="btn-primary" style="white-space:nowrap;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          Get a Quote
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- =============================================
+       PAGE HERO
+       ============================================= -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>&rsaquo;</span>
+        <span>Contact</span>
+      </nav>
+      <h1 class="page-hero-title">Contact Us</h1>
+      <p class="page-hero-sub">We are based in Lilongwe and ready to help with your next project.</p>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CONTACT DETAILS + MAP
+       ============================================= -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left: contact detail cards -->
+        <div class="contact-cards reveal">
+
+          <!-- Phone -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <h3>Phone</h3>
+              <a href="tel:+265999123456">+265 999 123 456</a>
+              <p class="sub">Monday – Friday, 7:30 am – 5:00 pm</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <h3>WhatsApp</h3>
+              <a href="https://wa.me/265999123456" target="_blank">+265 999 123 456</a>
+              <p class="sub">Send us a message anytime</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <h3>Email</h3>
+              <a href="mailto:info@primecapitalmw.com">info@primecapitalmw.com</a>
+              <p class="sub">We reply within one business day</p>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <h3>Location</h3>
+              <p>Lilongwe, Malawi</p>
+              <p class="sub">Exact address provided on booking</p>
+            </div>
+          </div>
+
+          <!-- Social media -->
+          <div class="contact-card" style="flex-direction:column; align-items:flex-start;">
+            <div style="display:flex;align-items:center;gap:20px;width:100%;">
+              <div class="contact-card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </div>
+              <div class="contact-card-body">
+                <h3>Social Media</h3>
+                <p style="font-size:0.88rem;font-weight:400;color:var(--muted);">Follow us for project updates and inspiration</p>
+              </div>
+            </div>
+            <div class="social-row" style="margin-top:16px;margin-left:68px;">
+              <a href="https://facebook.com" target="_blank" class="social-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                Facebook
+              </a>
+              <a href="https://instagram.com" target="_blank" class="social-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+
+          <!-- Business hours -->
+          <table class="hours-table reveal">
+            <caption>Business Hours</caption>
+            <tbody>
+              <tr>
+                <td>Monday – Friday <span class="badge-open">Open</span></td>
+                <td>7:30 am – 5:00 pm</td>
+              </tr>
+              <tr>
+                <td>Saturday</td>
+                <td>8:00 am – 1:00 pm</td>
+              </tr>
+              <tr>
+                <td>Sunday</td>
+                <td>Closed</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div><!-- /.contact-cards -->
+
+        <!-- Right: map -->
+        <div class="map-wrap reveal">
+          <!-- Replace the div below with a real Google Maps embed when ready -->
+          <div class="map-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Map will appear here
+          </div>
+          <div class="map-footer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Prime Capital Steel Fabricators — Lilongwe, Malawi
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CTA BANNER
+       ============================================= -->
+  <section style="background:var(--red);padding:64px 0;" class="reveal">
+    <div class="container" style="text-align:center;">
+      <h2 style="color:var(--white);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;margin-bottom:12px;">
+        Ready to Get Started?
+      </h2>
+      <p style="color:rgba(255,255,255,0.85);font-size:0.95rem;margin-bottom:28px;">
+        Request a free, no-obligation quote and we will get back to you within one business day.
+      </p>
+      <a href="quote.html" class="btn-outline">Get a Free Quote &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:20px;">
+            <div class="logo-placeholder">PC</div>
+            <div>
+              <strong style="display:block;color:var(--white);font-size:0.95rem;">PRIME CAPITAL</strong>
+              <span style="font-size:0.62rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">STEEL FABRICATORS</span>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Lilongwe, Malawi
+          </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +265 999 123 456
+          </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@primecapitalmw.com
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="quote.html">Get a Quote</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="footer-social">
+            <a href="https://facebook.com" target="_blank" class="social-link" aria-label="Facebook">f</a>
+            <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram">in</a>
+            <a href="https://wa.me/265999123456" target="_blank" class="social-link" aria-label="WhatsApp">wa</a>
+          </div>
+          <div style="margin-top:28px;">
+            <a href="quote.html" class="btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+              Get a Quote
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Prime Capital Steel Fabricators. All rights reserved.</span>
+        <span>Quality Steel Fabrication Built to Last.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
